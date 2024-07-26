@@ -38,7 +38,7 @@ public class Menu {
         while (!salir) {
             System.out.println("/*/*/*/*/*/*/*/*/*/");
             System.out.println("Menu de Parking:");
-            System.out.println("1. Aparcar vehículo");
+            System.out.println("1. Aparcar vehiculo");
             System.out.println("2. Liberar espacio");
             System.out.println("3. Mostrar estado");
             System.out.println("4. Salir");
