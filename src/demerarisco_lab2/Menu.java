@@ -1,23 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package demerarisco_lab2;
 
 import Parking.Parking;
-import Vehiculos.Carro;
-import Vehiculos.Motocicleta;
-import Vehiculos.Vehiculos;
 import java.util.Scanner;
-
 
 public class Menu {
     private Parking parking;
     private Scanner sc;
+    private OperacionesParking operaciones;
 
     public Menu() {
         sc = new Scanner(System.in);
         inicializarParking();
+        operaciones = new OperacionesParking(parking, sc);
         ejecutarMenu();
     }
 
@@ -25,9 +19,9 @@ public class Menu {
         System.out.println("BIENVENIDO AL SISTEMA DE PARKING");
         System.out.println("Ingrese la capacidad del parking (1-10): ");
         int capacidad = sc.nextInt();
-        while (capacidad>10 || capacidad<=0){
+        while (capacidad > 10 || capacidad <= 0) {
             System.out.println("Error, cantidad invalidada. Ingrese nuevamente '1-10'");
-            capacidad=sc.nextInt();
+            capacidad = sc.nextInt();
         }
         sc.nextLine();  
         parking = new Parking(capacidad);
@@ -48,10 +42,10 @@ public class Menu {
             sc.nextLine();
             switch (opcion) {
                 case 1:
-                    aparcarVehiculo();
+                    operaciones.aparcarVehiculo();
                     break;
                 case 2:
-                    liberarEspacio();
+                    operaciones.liberarEspacio();
                     break;
                 case 3:
                     parking.mostrarEstado();
@@ -66,30 +60,7 @@ public class Menu {
         }
     }
 
-    private void aparcarVehiculo() {
-        System.out.println("Ingrese el tipo de vehhculo (Carro/Motocicleta): ");
-        String tipo = sc.nextLine();
-        System.out.println("Ingrese la marca del vehiculo: ");
-        String marca = sc.nextLine();
-        System.out.println("Ingrese la placa del vehiculo: ");
-        String placa = sc.nextLine();
-        
-        Vehiculos vehiculo;
-        if (tipo.equalsIgnoreCase("Carro")) {
-            vehiculo = new Carro(marca, placa, 4);
-        } else if (tipo.equalsIgnoreCase("Motocicleta")) {
-            vehiculo = new Motocicleta(marca, placa, 2);
-        } else {
-            System.out.println("Tipo de vehiculo no valido.");
-            return;
-        }
-        parking.aparcarVehiculo(vehiculo);
-    }
-    private void liberarEspacio() {
-        System.out.println("Ingrese el numero del espacio a liberar: ");
-        int numero = sc.nextInt();
-        sc.nextLine();  
-        parking.liberarEspacio(numero);
+    public static void main(String[] args) {
+        new Menu();
     }
 }
-
