@@ -18,7 +18,7 @@ public class OperacionesParking {
         this.parking = parking;
         this.sc = sc;
     }
-
+    //Ingreso de datos, para el parking
     public void aparcarVehiculo() {
         System.out.println("Ingrese el tipo de vehiculo (Carro/Motocicleta): ");
         String tipo = sc.nextLine();
